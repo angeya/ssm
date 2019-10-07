@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--映射文件-->
+<mapper namespace="user">
+
+    <insert id="addUserByObject" parameterType="pojo.User">
+        insert into user(username,age,birthday,deptid) values(#{name},#{age},#{birthday},#{deptid})
+    </insert>
+
+    <update id="updateUserByObject" parameterType="pojo.User">
+        update user
+        set username=#{name},age=#{age},birthday=#{birthday},deptid=#{deptid}
+        where id=#{id}
+    </update>
+
+</mapper>

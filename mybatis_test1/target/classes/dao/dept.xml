@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-        <!--映射文件-->
-<mapper namespace="DEPT">
+<!--映射文件-->
+<mapper namespace="dept">
 
-    <insert id="addDept" parameterType="String">
+    <!--传单个值的话，parameterType只要对应类型就行，#{参数名称随意}-->
+    <insert id="addDeptByString" parameterType="String">
         insert into dept (deptname) values(#{name})
     </insert>
+
+    <!--封装的类，parameterType为类的全限定类名，#{类中的属性，若是map则为key}，-->
+    <insert id="addDeptByObject" parameterType="pojo.Dept">
+        insert into dept (deptname) values(#{deptname})
+    </insert>
+
+    <!--keyProperty为从数据库自增字段添加到object中的属性，那么useGeneratedKeys设置为true，
+    mybatis会调用Object的setter方法进行修改属性值-->
+    <insert id="addDeptByObjectGetId" parameterType="pojo.Dept" keyProperty="id" useGeneratedKeys="true">
+        insert into dept (deptname) values(#{deptname})
+    </insert>
+
+
 
     <!--<insert-->
             <!--id="saveUser" parameterType="com.test.springtest.User"-->
